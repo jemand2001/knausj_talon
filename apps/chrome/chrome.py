@@ -4,6 +4,7 @@ ctx = Context()
 mod = Module()
 
 mod.apps.chrome = "app.name: Google Chrome"
+mod.apps.chrome = "app.name: Google-Chrome"
 mod.apps.chrome = "app.name: chrome.exe"
 
 ctx.matches = r"""
@@ -26,3 +27,13 @@ class user_actions:
         else:
             actions.key("ctrl-9")
 
+    def new_tab():
+        if app.platform == "mac":
+            actions.key("cmd-t")
+        else:
+            actions.key("ctrl-t")
+
+@mod.action_class
+class chrome:
+    def new_tab():
+        """open a new tab"""
